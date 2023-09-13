@@ -178,7 +178,107 @@ Usually, between steps 4 and 5, we will combine the training and validation data
 
 **NumPy** is a Python library which adds support for large, multi-dimensional arrays and matrices, along with many high-level functions to operate on them. NumPy is used extensively in ML.
 
-Please check the [Python and libraries cheatsheet](https://gist.github.com/ziritrion/9b80e47956adc0f20ecce209d494cd0a#numpy) for reference.
+`import numpy as np`
+
+* Creating arrays
+    * `np.zeros(10)`
+        * array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+    * `np.ones(10)`
+        * array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
+    * `np.full(10, 2.5)`
+        * array([2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5])
+    * `a = np.array([1,2,3,5,7,12])`
+    * `a[2] = 10`
+    * `a`
+        * array([1, 2, 10, 5, 7, 12])
+    * `np.arange(3, 10)`
+        * array([3, 4, 5, 6, 7, 8, 9])
+    * `np.linspace(0, 1, 11)`
+        * array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])
+* Multi-dimensional arrays
+    * `np.zeros((5,2))`
+        * array([[0., 0.],
+       [0., 0.],
+       [0., 0.],
+       [0., 0.],
+       [0., 0.]])
+    * `np.array([
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]
+        ])`
+        * array([[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+    * 0 | [1, 2, 3],  
+      1 | [4, 5, 6],  
+      2 | [7, 8, 9]  
+        ---0--1--2---
+    * `n[0, 1]`
+        * 2
+    * `n[0, 1] = 20`
+    * `n[0, 1]`
+        * 20
+    * `n[2]`
+        * array([7, 8, 9])
+    * `n[2] = [1, 1, 1]`
+    * `n[:, 1]`
+        * array([20, 5, 1])
+        * Gets only the 2nd column, must have the `:`
+    * `n[:, 2] =  [0, 1, 2]`
+        * assign last column values
+* Randomly generated arrays
+    * `np.random.rand(5, 2)`
+        * 5 rows, 2 columns, standard distribution between 0 and 1
+        * array([[0.81532743, 0.80796466],
+       [0.64720646, 0.97027853],
+       [0.06686303, 0.81587957],
+       [0.49432216, 0.16573029],
+       [0.99768147, 0.05797202]])
+    * `np.random.seed(2)`
+    * `np.random.rand(5, 2)`
+        * execute these together to lock the seed and create standard across machines (may be dependent on NumPy version)
+    * `np.random.randn(5, 2)`
+        * this now uses normal distribution
+    * `100 * np.random.rand(5, 2)`
+        * array([[18.6916134 , 21.86619803],
+       [35.4242042 , 67.09590773],
+       [51.86579743, 13.79911075],
+       [75.26738586, 56.5555902 ],
+       [65.31238415, 16.99556783]])
+    * `np.random.randint(low=0, high=100, size=(5, 2))`
+        * array([[84, 67],
+       [27, 90],
+       [21, 74],
+       [58,  8],
+       [22, 10]])
+* Element-wise operations
+    * `a = np.arange(5)`
+    * `a`
+        * array([0, 1, 2, 3, 4])
+    * `a * 2`
+        * array([0, 2, 4, 6, 8])
+    * `b = (10 + (a * 2)) ** 2 / 100`
+    * `b`
+        * array([100, 144, 196, 256, 324])
+    * `a + b`
+        * array([1.  , 2.44, 3.96, 5.56, 7.24])
+    * Comparison operations
+        * `a >= 2`
+            * array([False, False,  True,  True,  True])
+        * `a > b`
+            * array([False, False,  True,  True,  True])
+        * `a[a > b]`
+            * array([2, 3, 4])
+            * elements 2, 3, and 4 were those that were greater above
+* Summarizing operations
+    * `a.sum()`
+        * 10
+    * `a.std()`
+        * 1.4142135623730951
+    * `a.mean()`
+    * `a.min()`
+    * `a.max()`
 
 # Linear Algebra
 
