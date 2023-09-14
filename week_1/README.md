@@ -283,6 +283,7 @@ Usually, between steps 4 and 5, we will combine the training and validation data
 # Linear Algebra
 
 ML makes use of many algebraic concepts and operations due to its extensive use of arrays and matrices. Here is a quick refresher.
+Note we will use `u` to label column vector and `v` to label row vector. We will use capital `U` and `V` respectively for the matrices.
 
 ## Linear combination operations
 
@@ -357,4 +358,88 @@ Vectors and matrices are extremely convenient for ML because they allow us to so
 
 **Pandas** is a python data analysis library. It offers data structures and operations for manipulating tabular data. Its main data structure is called a **dataframe**, which is basically a table.
 
-Please check the [Python and libraries cheatsheet](https://gist.github.com/ziritrion/9b80e47956adc0f20ecce209d494cd0a#pandas) for reference.
+`import pandas as pd`
+
+Create a dataframe
+* Create a dataframe with list of lists
+    * `data = [[],[],[]]`
+        * list of lists where each row is list and each column value is a record in that list
+    * `columns = ['','']`
+        * list of strings for column names
+    * `df = pd.DataFrame(data, columns=columns)`
+* Create a dataframe with list of dicts
+    * `data = [{"key1":"value1", "key2":"value1"}, {"key1":"value2", "key2":"value2"}]`
+    * `df = pd.DataFrame(data)`
+
+Explore a dataframe
+* `df.head(n=2)`
+    * n=2 is not required it will limit the number of rows if present
+* `df.Make` or `df['Make']` and multiple `df[['Make','Model','Price']]`
+    * This is how you access only select columns
+    * every column of dataframe is a 'series' every dataframe is a 'table'
+
+Add and remove columns 
+* `df['id']` = [1, 2, 3, 4, 5]
+    * add column
+* `del df['id]`
+    * delete column
+
+Index
+* Note that indexes show on the right of a dataframe such as on `df.show()`
+* `df.index`
+* `df.loc[1]`
+    * get row at index 1
+* `df.loc[1, 2]`
+* `df.index = ['a','b','c','d']`
+    * this replaces the index so now you would have to use `df.loc['a', 'b']`
+* you can still use the positional index though `df.iloc[1, 2]`
+* `df.reset_index()` maintains old index along side
+* `df.reset_index(drop=True)` does not maintain old index along side
+* These return a new dataframe and do not overwrite the old dataframe would have to:
+    * `df = df.reset_index(drop=True)`
+
+Element wise operations
+* `df['Engine HP'] / 100` perform mathematical operations on columns
+* `df['Year'] >= 2015` perform logical operations on columns
+
+Filtering
+* `df[df['Year'] >= 2015]` this returns the whole df where element wise operation is true
+* `df[(df['Make'] == 'Nissan') & (df['Year'] >= 2015)]`
+
+String operations
+* `'STR'.lower()` all characters of string made lower case
+    * `df['Vehicle_Style'].str.lower()`
+* `'machine learning zoomcamp'.replace(' ', '_')` replace characters
+    * machine_learning_zoomcamp
+    * `df['Vehicle_Style'].str.replace(' ', '_')`
+* `df['Vehicle_Style'] = df['Vehicle_Style'].str.replace(' ', '_').str.lower()`
+
+Summarizing operations
+* `df.MSRP.describe()` does most summarizing operations at once
+    * can do this with the whole df too `df.describe()`
+    * `df.describe().round(2)`
+* `df.MSRP.max()`
+* `df.MSRP.min()`
+* `df.MSRP.mean()`
+* `df.Make.nunique()` or `df.nunique()`
+    * gives # of unique values, works on strings
+
+Missing values
+* `df.isnull()` returns 'True' if missing value
+* `df.isnull().sum()` how many nulls in each column
+
+Grouping
+```sql
+SELECT  transmission_type,
+        AVG(MSRP)
+FROM    cars
+GROUP   BY transmission_type
+```
+* `df.groupby('Transmission Type').MSRP.mean()`
+
+Get NumPy array
+* `df.MSRP.values`
+    * array([2000, 27150, 54990, 34450, 32340])
+
+Convert Pandas form back to list of dictionaries
+* `df.to_dict(orient='records')`
