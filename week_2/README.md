@@ -103,7 +103,7 @@ Thus, knowing that `(Xᵀ · X)⁻¹ · Xᵀ  · X = I` and can therefore be can
 
 ## RMSE (Root Mean Square Error)
 
-MSRE is a convenient way to measure the accuracy (or the error) of our model.
+RMSE is a convenient way to measure the accuracy (or the error) of our model.
 
 * `RMSE = √( 1/m * ∑( (g(Xᵢ) - yᵢ)²	 , i=[1,m] ) )`
 * `g(Xᵢ)` is the prediction for `Xᵢ`.
