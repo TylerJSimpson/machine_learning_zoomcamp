@@ -108,6 +108,7 @@ RMSE is a convenient way to measure the accuracy (or the error) of our model.
 * `RMSE = √( 1/m * ∑( (g(Xᵢ) - yᵢ)²	 , i=[1,m] ) )`
 * `g(Xᵢ)` is the prediction for `Xᵢ`.
 * `yᵢ` is the actual value.
+* essentially you take the squared difference between the prediction and actual targets (squared error). Then you get the average of those values (mean square error). Then you take the square root (root mean square error).
 
 The lower the RMSE, the more accurate the model is.
 
