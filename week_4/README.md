@@ -26,7 +26,7 @@ For binary classification, based on the prediction and the ground truth, there a
 
 The ***confusion table*** is a matrix whose columns (x dimension) are the predictions and the rows (y dimension) is the ground truth:
      
-     TP  FP
+     TN  FP
      FN  TP
 
 Each position contains the element count for each scenario. We can also convert the count values to percentages.
